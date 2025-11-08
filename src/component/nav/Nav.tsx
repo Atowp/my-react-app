@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ThemeSwitchComponent from "../theme-switch/ThemeSwitch";
 
 function NavComponent() {
   const navItems = [
@@ -18,8 +19,13 @@ function NavComponent() {
   return (
     <>
       <div className="fixed top-0 left-0 right-0 z-50 bg-zinc-800 shadow-md">
-        <nav className="container mx-auto px-4 py-3 flex gap-6">
-          {navItemsEle}
+        <nav className="container mx-auto flex items-center justify-between">
+          <div className="container mx-auto px-4 py-3 flex gap-6">
+            {navItemsEle}
+          </div>
+          <div>
+            <ThemeSwitchComponent />
+          </div>
         </nav>
       </div>
     </>
