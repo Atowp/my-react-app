@@ -1,14 +1,14 @@
 import { useState } from "react";
 import reactLogo from "../../assets/react.svg";
 import viteLogo from "/vite.svg";
-import NavComponent from "../../component/nav/Nav";
+import Nav from "../../component/Nav/Nav";
 
 function AboutPage() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <NavComponent />
+      <Nav />
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />

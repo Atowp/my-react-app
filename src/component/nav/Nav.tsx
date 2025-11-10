@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import ThemeSwitchComponent from "../theme-switch/ThemeSwitch";
+import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 
-function NavComponent() {
+function Nav() {
   const navItems = [
     { to: "/", label: "Index" },
     { to: "/about", label: "About" },
@@ -24,7 +24,7 @@ function NavComponent() {
             {navItemsEle}
           </div>
           <div>
-            <ThemeSwitchComponent />
+            <ThemeSwitch />
           </div>
         </nav>
       </div>
@@ -32,4 +32,4 @@ function NavComponent() {
   );
 }
 
-export default NavComponent;
+export default Nav;

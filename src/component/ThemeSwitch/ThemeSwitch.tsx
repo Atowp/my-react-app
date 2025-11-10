@@ -8,7 +8,7 @@ import {
   watchSystemChange,
 } from "../../utils/theme";
 
-function ThemeSwitchComponent() {
+function ThemeSwitch() {
   const [state, setState] = useState(readTheme);
 
   useEffect(() => {
@@ -42,4 +42,4 @@ function ThemeSwitchComponent() {
   );
 }
 
-export default ThemeSwitchComponent;
+export default ThemeSwitch;
