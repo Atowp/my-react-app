@@ -4,6 +4,7 @@ import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 function Nav() {
   const navItems = [
     { to: "/", label: "Index" },
+    { to: "/ticTacToe", label: "TicTacToe" },
     { to: "/about", label: "About" },
   ];
 

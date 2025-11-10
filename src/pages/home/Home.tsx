@@ -11,7 +11,7 @@ function useRepeatElements(count: number, element: JSX.Element) {
 function HomePage() {
   const content = "Welcome to my React App";
 
-  const repearParagraph = useRepeatElements(100, <p>{content}</p>);
+  const repearParagraph = useRepeatElements(1, <p>{content}</p>);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./ThemeSwitch.less";
+import styles from "./ThemeSwitch.module.less";
 import {
   applyTheme,
   isDark,
@@ -28,15 +28,15 @@ function ThemeSwitch() {
   const dark = isDark(state);
 
   return (
-    <label className="switch" style={{ width: 80 }}>
+    <label className={styles.switch} style={{ width: 80 }}>
       <input type="checkbox" checked={dark} onChange={handleChange} />
       <span
-        className={`slider flex items-center justify-between ${
+        className={`${styles.slider} flex items-center justify-between ${
           dark ? "" : "flex-row-reverse"
         }`}
         style={{ padding: "0 8px" }}
       >
-        <span className="slider-text text-xs">{text}</span>
+        <span className={`${styles.sliderText} text-xs`}>{text}</span>
       </span>
     </label>
   );
