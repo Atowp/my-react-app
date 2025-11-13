@@ -6,7 +6,7 @@ function Square({
   value,
   onSquareClick,
 }: {
-  value: string;
+  value: string | null;
   onSquareClick: () => void;
 }) {
   // use {} to destructure the props
@@ -17,28 +17,33 @@ function Square({
   );
 }
 
-function Board() {
-  const [isXNext, setIsXNext] = useState(true);
-  const [squares, setSquare] = useState(Array(9).fill(null));
+function Board({
+  xIsNext,
+  squares,
+  onPlay,
+}: {
+  xIsNext: boolean;
+  squares: Array<string | null>;
+  onPlay: (nextSquares: Array<string | null>) => void;
+}) {
   const Winner = calculateWinner(squares);
   let status: string = "";
   if (Winner) {
-    status = `Winner: ${Winner}, Congradulations!`;
+    status = `Winner is: ${Winner}, Congradulations!`;
   } else {
-    status = `Next player: ${isXNext ? "X" : "O"}`;
+    status = `Next player is: ${xIsNext ? "X" : "O"}`;
   }
 
   function handleClick(index: number) {
     // direct reception parameters
     const nextSquares = squares.slice();
     if (squares[index] || calculateWinner(squares)) return; // if the square is already filled, return
-    if (isXNext) {
+    if (xIsNext) {
       nextSquares[index] = "X";
     } else {
       nextSquares[index] = "O";
     }
-    setSquare(nextSquares);
-    setIsXNext(!isXNext);
+    onPlay(nextSquares);
   }
 
   function calculateWinner(squares: Array<string | null>) {
@@ -67,7 +72,7 @@ function Board() {
 
   return (
     <>
-      <div>
+      <div className="flex items-center justify-center flex-col">
         <div>{status}</div>
         <div>
           <div className="flex">
@@ -91,11 +96,46 @@ function Board() {
   );
 }
 
+function Todo() {
+  return (
+    <>
+      <div>Todo List Component Placeholder</div>
+      <div className="text-left">
+        <ol>
+          <li>Add a reset button</li>
+          <li>Add a restart button</li>
+          <li>Add a timer</li>
+        </ol>
+      </div>
+    </>
+  );
+}
+
 function TicTacToe() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const currentSquares = history[history.length - 1];
+
+  function handlePlay(nextSquares: Array<string | null>) {
+    setHistory([...history, nextSquares]);
+    setXIsNext(!xIsNext);
+  }
+
   return (
     <>
       <Nav />
-      <Board />
+      <div className={`${styles.box} flex justify-between`}>
+        <div className={styles.board}>
+          <Board
+            xIsNext={xIsNext}
+            squares={currentSquares}
+            onPlay={handlePlay}
+          />
+        </div>
+        <div className="flex flex-col">
+          <Todo />
+        </div>
+      </div>
     </>
   );
 }
