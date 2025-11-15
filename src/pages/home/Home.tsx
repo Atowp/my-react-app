@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 import React from "react";
-import Nav from "../../component/Nav/Nav";
+import Nav from "../../components/Nav/Nav";
 
 function useRepeatElements(count: number, element: JSX.Element) {
   return Array.from({ length: count }, (_, index) =>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import reactLogo from "../../assets/react.svg";
 import viteLogo from "/vite.svg";
-import Nav from "../../component/Nav/Nav";
+import Nav from "../../components/Nav/Nav";
 import styles from "./About.module.less";
 
 function AboutPage() {
@@ -24,7 +24,7 @@ function AboutPage() {
           className={styles.button}
           onClick={() => setCount((count) => count + 1)}
         >
-          count is {count}
+          Count is {count}
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR

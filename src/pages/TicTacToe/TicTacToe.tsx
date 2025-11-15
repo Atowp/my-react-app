@@ -1,5 +1,5 @@
 import { useState, type JSX } from "react";
-import Nav from "../../component/Nav/Nav";
+import Nav from "../../components/Nav/Nav";
 import styles from "./TicTacToe.module.less";
 
 function Square({
@@ -127,7 +127,7 @@ function MoveHistory({
         <div>You are at move #{currentMove}</div>
         <button
           onClick={onSortToggle}
-          className="px-2 py-1 bg-blue-500 text-white rounded text-sm"
+          className="px-2 py-1 bg-blue-500 text-white rounded text-sm ml-[35px]"
         >
           {sortAscending ? "Asc" : "Des"}
         </button>
