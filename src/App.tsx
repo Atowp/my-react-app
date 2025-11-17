@@ -3,13 +3,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home/Home";
 import AboutPage from "./pages/About/About";
 import TicTacToe from "./pages/TicTacToe/TicTacToe";
+import TodoList from "./pages/TodoList/TodoList";
+import Nav from "./components/Nav/Nav";
 
 function App() {
   return (
     <BrowserRouter>
+      <Nav />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/ticTacToe" element={<TicTacToe />} />
+        <Route path="/todoList" element={<TodoList />} />
         <Route path="/about" element={<AboutPage />} />
       </Routes>
     </BrowserRouter>

@@ -1,5 +1,4 @@
 import { useState, type JSX } from "react";
-import Nav from "../../components/Nav/Nav";
 import styles from "./TicTacToe.module.less";
 
 function Square({
@@ -212,7 +211,6 @@ function TicTacToe() {
 
   return (
     <>
-      <Nav />
       <div className={`${styles.box} flex justify-between`}>
         <div className={styles.board}>
           <Board

@@ -1,6 +1,5 @@
 import type { JSX } from "react";
 import React from "react";
-import Nav from "../../components/Nav/Nav";
 
 function useRepeatElements(count: number, element: JSX.Element) {
   return Array.from({ length: count }, (_, index) =>
@@ -15,7 +14,6 @@ function HomePage() {
 
   return (
     <>
-      <Nav />
       <div className="pt-16">
         <h1 className="text-3xl font-bold text-center">New Entrance</h1>
         {repearParagraph}

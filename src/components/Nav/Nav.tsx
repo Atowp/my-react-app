@@ -1,11 +1,33 @@
 import { Link } from "react-router-dom";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
+import { Dropdown, Space, type MenuProps } from "antd";
+import styles from "./Nav.module.less";
+
+const CptItems: React.FC<{ items?: MenuProps["items"] }> = ({ items }) => {
+  return (
+    <Dropdown menu={{ items }}>
+      <a onClick={(e) => e.preventDefault()} className={styles.dropdownTrigger}>
+        <Space>Components</Space>
+      </a>
+    </Dropdown>
+  );
+};
 
 function Nav() {
   const navItems = [
     { to: "/", label: "Index" },
-    { to: "/ticTacToe", label: "TicTacToe" },
     { to: "/about", label: "About" },
+  ];
+
+  const items: MenuProps["items"] = [
+    {
+      label: <Link to="/ticTacToe">ticTacToe</Link>,
+      key: "1",
+    },
+    {
+      label: <Link to="/todoList">todoList</Link>,
+      key: "2",
+    },
   ];
 
   const itemsClassName =
@@ -23,6 +45,7 @@ function Nav() {
         <nav className="container mx-auto flex items-center justify-between">
           <div className="container mx-auto px-4 py-3 flex gap-6">
             {navItemsEle}
+            <CptItems items={items} />
           </div>
           <div>
             <ThemeSwitch />
