@@ -30,9 +30,17 @@ This is my first React project using TypeScript and Vite.
   - Improve responsive design for mobile and desktop
   - Optimize CSS performance and bundle size
 
+- [ ] **Application Enhancement & Modernization**
+
+  - Refactor Theme Switch component using React Context API
+  - Refactor TicTacToe project using React Hooks with useEffect for game logic
+  - Enhanced TodoList with Search and Filter
+  - Refactor TodoList state management using Redux Toolkit
+
 ### Completed Tasks
 
 - [x] Add Navigation component
 - [x] Add ThemeSwitch component
 - [x] Add Tictactoe component
 - [x] Add TodoList component
+- [x] Add FilterableProductTable component

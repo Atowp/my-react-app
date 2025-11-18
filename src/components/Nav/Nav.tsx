@@ -28,6 +28,10 @@ function Nav() {
       label: <Link to="/todoList">todoList</Link>,
       key: "2",
     },
+    {
+      label: <Link to="/filterableProductTable">table</Link>,
+      key: "3",
+    },
   ];
 
   const itemsClassName =
