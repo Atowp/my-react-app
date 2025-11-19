@@ -16,93 +16,86 @@ interface Product {
   name: string;
 }
 
-function SearchBar({
-  filterText,
-  inStockOnly,
-  onFilterTextChange,
-  onInStockOnlyChange,
-}: {
+interface SearchBarProps {
   filterText: string;
   inStockOnly: boolean;
   onFilterTextChange: (filterText: string) => void;
   onInStockOnlyChange: (inStockOnly: boolean) => void;
-}) {
-  return (
-    <>
-      <form>
-        <div>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={filterText}
-            onChange={(e) => onFilterTextChange(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              checked={inStockOnly}
-              onChange={(e) => onInStockOnlyChange(e.target.checked)}
-            />
-            Only show products in stock
-          </label>
-        </div>
-      </form>
-    </>
-  );
 }
 
-function ProductTable({
-  products,
-  filterText,
-  inStockOnly,
-}: {
+interface ProductTableProps {
   products: Product[];
   filterText: string;
   inStockOnly: boolean;
-}) {
+}
+
+function SearchBar(props: SearchBarProps) {
+  const { filterText, inStockOnly, onFilterTextChange, onInStockOnlyChange } =
+    props;
+  return (
+    <form>
+      <div>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={filterText}
+          onChange={(e) => onFilterTextChange(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            checked={inStockOnly}
+            onChange={(e) => onInStockOnlyChange(e.target.checked)}
+          />
+          Only show products in stock
+        </label>
+      </div>
+    </form>
+  );
+}
+
+function ProductTable(props: ProductTableProps) {
+  const { products, filterText, inStockOnly } = props;
   const rows: React.ReactElement[] = [];
   let lastCategory: string | null = null;
-  products.forEach((ele) => {
-    if (ele.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
+  products.forEach((product) => {
+    if (product.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1)
       return;
-    }
-    if (inStockOnly && !ele.stocked) {
-      return;
-    }
-    if (lastCategory !== ele.category) {
+    if (inStockOnly && !product.stocked) return;
+
+    if (lastCategory !== product.category) {
       rows.push(
-        <ProductCategoryRow category={ele.category} key={ele.category} />
+        <ProductCategoryRow
+          category={product.category}
+          key={product.category}
+        />
       );
     }
-    rows.push(<ProductRow product={ele} key={ele.name} />);
-    lastCategory = ele.category;
+    rows.push(<ProductRow product={product} key={product.name} />);
+    lastCategory = product.category;
   });
   return (
-    <>
-      <table>
-        <thead>
-          <tr className="text-left">
-            <th>Name</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
-    </>
+    <table>
+      <thead>
+        <tr className="text-left">
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
   );
 }
 
 function ProductCategoryRow({ category }: { category: string }) {
   return (
-    <>
-      <tr>
-        <td colSpan={2} className="font-bold">
-          {category}
-        </td>
-      </tr>
-    </>
+    <tr>
+      <td colSpan={2} className="font-bold">
+        {category}
+      </td>
+    </tr>
   );
 }
 
@@ -113,31 +106,34 @@ function ProductRow({ product }: { product: Product }) {
     <span style={{ color: "red" }}>{product.name}</span>
   );
   return (
-    <>
-      <tr>
-        <td>{name}</td>
-        <td>{product.price}</td>
-      </tr>
-    </>
+    <tr>
+      <td>{name}</td>
+      <td>{product.price}</td>
+    </tr>
   );
 }
 
 function FilterableProductTable() {
   const [filterText, setFilterText] = useState("");
   const [inStockOnly, setInStockOnly] = useState(false);
+
+  const searchBarProps = {
+    filterText,
+    inStockOnly,
+    onFilterTextChange: setFilterText,
+    onInStockOnlyChange: setInStockOnly,
+  };
+
+  const productTableProps = {
+    products: PRODUCTS,
+    filterText,
+    inStockOnly,
+  };
+
   return (
     <>
-      <SearchBar
-        filterText={filterText}
-        inStockOnly={inStockOnly}
-        onFilterTextChange={setFilterText}
-        onInStockOnlyChange={setInStockOnly}
-      />
-      <ProductTable
-        products={PRODUCTS}
-        filterText={filterText}
-        inStockOnly={inStockOnly}
-      />
+      <SearchBar {...searchBarProps} />
+      <ProductTable {...productTableProps} />
     </>
   );
 }
