@@ -6,6 +6,7 @@ import AboutPage from "./pages/About/About";
 import TicTacToe from "./pages/TicTacToe/TicTacToe";
 import TodoList from "./pages/TodoList/TodoList";
 import FilterableProductTable from "./pages/FilterableProductTable/FilterableProductTable";
+import Quiz from "./pages/Quiz/Quiz";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           path="/filterableProductTable"
           element={<FilterableProductTable />}
         />
+        <Route path="/quiz" element={<Quiz />} />
       </Routes>
     </BrowserRouter>
   );
